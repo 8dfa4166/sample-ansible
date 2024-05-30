@@ -27,12 +27,14 @@
         repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
         state: present
 
-    - name: Install Docker CE
+    - name: Install Docker CE and Required Tools
       apt:
         name:
           - docker-ce
           - docker-ce-cli
           - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
         state: present
 
     - name: Ensure Docker service is running
