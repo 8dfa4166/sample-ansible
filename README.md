@@ -16,7 +16,7 @@ hostname -I
 docker compose up -d
 ```
 
-## post process
+## target postprocess
 ```
 sudo service ssh stop
 sudo sed -i 's/Port 2222/#Port 22/' /etc/ssh/sshd_config
