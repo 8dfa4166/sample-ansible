@@ -1,28 +1,24 @@
 # ansible
 
 
-## preconditions
+## target preprocess
 ```
 sudo apt-get update
-sudo apt install openssh-server
-
-export BEFORE_HOSTNAME=$(hostname)
-export AFTER_HOSTNAME=docker
-
-sudo hostnamectl set-hostname $AFTER_HOSTNAME
-sudo sed -i "s/$BEFORE_HOSTNAME/$AFTER_HOSTNAME/g" /etc/hosts
-
+sudo apt install -y openssh-server
 sudo sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config
 sudo service ssh start
+
+hostname -I
 ```
 
-## client
+## ansible client
 ```
-sudo apt-get update
-sudo apt-get install ansible
+docker compose up -d
+```
 
-sudo apt-get update
-sudo apt install sshpass
-
-ansible-playbook -i inventory playbook.yaml
+## post process
+```
+sudo service ssh stop
+sudo sed -i 's/Port 2222/#Port 22/' /etc/ssh/sshd_config
+sudo apt purge openssh-server
 ```

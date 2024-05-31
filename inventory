@@ -1,2 +1,0 @@
-[localhost]
-docker ansible_host=localhost ansible_port=2222 ansible_user=k8suser ansible_password=P@ssw0rd ansible_connection=ssh ansible_become_password=P@ssw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  ansible:
+    container_name: ansible
+    build:
+      context: .
+      dockerfile: ./ansible/Dockerfile
+    volumes:
+      - ./ansible:/root/.ansible
+    working_dir: /root/.ansible
+    command: 
+      - sh
+      - -c
+      - |
+        ansible-playbook -i inventory playbook.yaml
+    tty: true
